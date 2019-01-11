@@ -4,11 +4,35 @@ using System.Text;
 
 namespace CourierKata
 {
-    public enum ParcelClassification
+    public class ParcelClassification
     {
-        Small = 0,
-        Medium = 1,
-        Large = 2,
-        XL = 3,
+        public string Name { get; }
+        public int Code { get; }
+
+    public ParcelClassification(ParcelDimensions dimensions)
+        {
+            var largestDimension = dimensions.GetLargestDimension();
+
+            if (largestDimension < 10)
+            {
+                Name = "Small";
+                Code = 0;
+            }
+            else if (largestDimension < 50)
+            {
+                Name = "Medium";
+                Code = 1;
+            }
+            else if (largestDimension < 100)
+            {
+                Name = "Large";
+                Code = 2;
+            }
+            else
+            {
+                Name = "XL";
+                Code = 3;
+            }
+        }
     }
 }
