@@ -1,10 +1,12 @@
-﻿using Xunit;
+﻿using System;
+using System.Collections.Generic;
+using Xunit;
 
 namespace CourierKata.Test
 {
     public class ParcelTests
     {
-        public class KataOne
+        public class Constructor
         {
             [Fact]
             public void Should_Set_Package_Type_To_Small_When_Largest_Dimension_Less_Than_10_CM()
@@ -36,6 +38,33 @@ namespace CourierKata.Test
                 var underTest = new Parcel(101, 1);
                 Assert.Equal("XL", underTest.Type.Name);
                 Assert.Equal(3, underTest.Type.Code);
+            }
+        }
+
+        public class SetShippingCost
+        {
+            [Fact]
+            public void Should_Correctly_Calculate_The_Price_Of_Medium_Parcels_By_Type_Code()
+            {
+                var expectedCost = 25.00;
+              
+                var underTest = new Parcel(5, 9);
+
+                var priceDictionary = new Dictionary<int, double> { { underTest.Type.Code, expectedCost } };
+
+                underTest.SetShippingCost(priceDictionary);
+
+                Assert.Equal(expectedCost, underTest.ShippingCost);
+            }
+
+            [Fact]
+            public void Should_Throw_When_The_Code_For_A_Parcel_Is_Not_Available()
+            {
+                var underTest = new Parcel(5, 9);
+
+                var priceDictionary = new Dictionary<int, double>();
+
+                Assert.Throws<Exception>(() => underTest.SetShippingCost(priceDictionary));
             }
         }
     }
