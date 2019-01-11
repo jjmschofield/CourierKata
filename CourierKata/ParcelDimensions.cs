@@ -14,5 +14,10 @@ namespace CourierKata
             WidthCm = widthCm;
             HeightCm = heightCm;
         }
+
+        public int GetLargestDimension()
+        {
+            return WidthCm > HeightCm ? WidthCm : HeightCm;
+        }
     }
 }
