@@ -9,9 +9,8 @@ HTTP, or any other transport layer
 * Output should be a collection of items with their individual cost and type, as well as
 total cost
 * In all circumstances the cheapest option for sending each parcel should be selected
-* Take no longer than 2 hours! Do what you can and give us a rough outline of what
-further changes you might consider making.
-Implementation Steps
+
+## Implementation Steps
 
 1. The initial implementation just needs to take into account a parcel's size. For each size
 type there is a fixed delivery cost
