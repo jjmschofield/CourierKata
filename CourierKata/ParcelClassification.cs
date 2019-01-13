@@ -7,14 +7,14 @@ namespace CourierKata
     public class ParcelClassification
     {
         public string Name { get; }
-        public int Code { get; }
+        public ParcelCode Code { get; }
 
     public ParcelClassification(ParcelDimensions dimensions, double weightKg)
         {
             if (weightKg >= 50)
             {
                 Name = "Heavy";
-                Code = 4;
+                Code = ParcelCode.Heavy;
                 return;
             }
 
@@ -23,22 +23,22 @@ namespace CourierKata
             if (largestDimensionCm < 10)
             {
                 Name = "Small";
-                Code = 0;
+                Code = ParcelCode.Small;
             }
             else if (largestDimensionCm < 50)
             {
                 Name = "Medium";
-                Code = 1;
+                Code = ParcelCode.Medium;
             }
             else if (largestDimensionCm < 100)
             {
                 Name = "Large";
-                Code = 2;
+                Code = ParcelCode.Large;
             }
             else
             {
                 Name = "XL";
-                Code = 3;
+                Code = ParcelCode.XL;
             }
         }
     }

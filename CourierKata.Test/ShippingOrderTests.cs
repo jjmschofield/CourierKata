@@ -5,13 +5,13 @@ namespace CourierKata.Test
 {
     public class ShippingOrderTests
     {
-        static readonly Dictionary<int, ShippingRate> PriceDictionary = new Dictionary<int, ShippingRate>
+        static readonly Dictionary<ParcelCode, ShippingRate> PriceDictionary = new Dictionary<ParcelCode, ShippingRate>
         {
-            {0, new ShippingRate(3, 1, 2)}, // Small
-            {1, new ShippingRate(8, 3, 2)}, // Medium
-            {2, new ShippingRate(15, 6, 2)}, // Large
-            {3, new ShippingRate(25, 10, 2)}, // XL
-            {4, new ShippingRate(50, 50, 1)} // Heavy
+            {ParcelCode.Small, new ShippingRate(3, 1, 2)},
+            {ParcelCode.Medium, new ShippingRate(8, 3, 2)},
+            {ParcelCode.Large, new ShippingRate(15, 6, 2)},
+            {ParcelCode.XL, new ShippingRate(25, 10, 2)},
+            {ParcelCode.Heavy, new ShippingRate(50, 50, 1)}
         };
 
         public class KataOne

@@ -20,7 +20,7 @@ namespace CourierKata
             WeightKg = weightKg;
         }
 
-        public void SetShippingPrice(Dictionary<int, ShippingRate> shippingRatesByCode)
+        public void SetShippingPrice(Dictionary<ParcelCode, ShippingRate> shippingRatesByCode)
         {
             if (!shippingRatesByCode.ContainsKey(Type.Code))
             {

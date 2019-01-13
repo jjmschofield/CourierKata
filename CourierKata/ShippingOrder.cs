@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace CourierKata
@@ -13,7 +14,7 @@ namespace CourierKata
         
         public string CurrencyCode { get; } = "USD";
 
-        public ShippingOrder(List<Parcel> parcels, Dictionary<int,ShippingRate> shippingRatesByCode, bool speedy = false)
+        public ShippingOrder(List<Parcel> parcels, Dictionary<ParcelCode, ShippingRate> shippingRatesByCode, bool speedy = false)
         {
             Parcels = parcels;
 
@@ -30,5 +31,16 @@ namespace CourierKata
 
             TotalPrice = ParcelPrice + SpeedyShippingPrice;
         }
+
+        //public List<ParcelDiscounts> CalculateDiscounts()
+        //{
+        //   // Calculate number of small parcel discounts
+        //    var smallParcels = Parcels.Where(parcel => parcel.Type.Code == 0);
+
+        //    var mediumParcel
+
+        //    // Calculate number of medium parcel discounts
+        //    // Mixed parcel discount
+        //}
     }
 }
