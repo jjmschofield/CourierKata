@@ -22,10 +22,10 @@ namespace CourierKata.Test
 
                 var parcels = new List<Parcel>
                 {
-                    new Parcel(5, 9),
-                    new Parcel(11, 49),
-                    new Parcel(5, 51),
-                    new Parcel(101, 9),
+                    new Parcel(5, 9, 1),
+                    new Parcel(11, 49, 1),
+                    new Parcel(5, 51, 1),
+                    new Parcel(101, 9, 1),
 
                 };
 
