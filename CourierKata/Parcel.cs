@@ -16,7 +16,7 @@ namespace CourierKata
         public Parcel(double widthCm, double heightCm, double weightKg = 0)
         {
             Dimensions = new ParcelDimensions(widthCm, heightCm);
-            Type = new ParcelClassification(Dimensions);
+            Type = new ParcelClassification(Dimensions, weightKg);
             WeightKg = weightKg;
         }
 

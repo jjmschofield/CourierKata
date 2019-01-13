@@ -9,8 +9,15 @@ namespace CourierKata
         public string Name { get; }
         public int Code { get; }
 
-    public ParcelClassification(ParcelDimensions dimensions)
+    public ParcelClassification(ParcelDimensions dimensions, double weightKg)
         {
+            if (weightKg >= 50)
+            {
+                Name = "Heavy";
+                Code = 4;
+                return;
+            }
+
             var largestDimension = dimensions.GetLargestDimension();
 
             if (largestDimension < 10)

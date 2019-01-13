@@ -113,5 +113,32 @@ namespace CourierKata.Test
                 Assert.Equal(expectedCost, underTest.TotalCost);
             }
         }
+
+        public class KataFour
+        {
+            readonly Dictionary<int, ShippingCharge> PriceDictionary = new Dictionary<int, ShippingCharge>
+            {
+                {0, new ShippingCharge(3, 1, 2)},
+                {1, new ShippingCharge(8, 3, 2)},
+                {2, new ShippingCharge(15, 6, 2)},
+                {3, new ShippingCharge(25, 10, 2)},
+                {4, new ShippingCharge(50, 50, 1)}
+            };
+
+            [Fact]
+            public void It_Should_Only_Charge_1kg_Per_Kg_Overweight_For_Heavy_Parcels()
+            {
+                var expectedCost = 51.00;
+
+                var parcels = new List<Parcel>
+                {
+                    new Parcel(5, 9, 51)
+                };
+
+                var underTest = new ShippingOrder(parcels, PriceDictionary);
+
+                Assert.Equal(expectedCost, underTest.TotalCost);
+            }
+        }
     }
 }
