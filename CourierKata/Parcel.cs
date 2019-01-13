@@ -9,7 +9,9 @@ namespace CourierKata
         public ParcelDimensions Dimensions { get; }
         public ParcelClassification Type { get; }
         public double WeightKg { get; }
-        public double ShippingCost { get; private set; }
+        public double ShippingCharge { get; private set; }
+        public double OverweightCharge { get; private set; }
+        public double TotalCost { get; private set; }
 
         public Parcel(double widthCm, double heightCm, double weightKg = 0)
         {
@@ -25,7 +27,19 @@ namespace CourierKata
                 throw new Exception("Type " + Type.Code + " is not available in the supplied price dictionary");
             }
 
-            ShippingCost = shippingChargeByType[Type.Code].Charge;
+            ShippingCharge = shippingChargeByType[Type.Code].Charge;
+            OverweightCharge = CalculateOverweightCharge(shippingChargeByType[Type.Code]);
+            TotalCost = ShippingCharge + OverweightCharge;
+        }
+
+        private double CalculateOverweightCharge(ShippingCharge shippingCharge)
+        {
+            if (WeightKg > shippingCharge.WeightLimitKg)
+            {
+                return (WeightKg - shippingCharge.WeightLimitKg) * shippingCharge.OverweightChargePerKg;
+            }
+            
+            return 0;
         }
     }
 }

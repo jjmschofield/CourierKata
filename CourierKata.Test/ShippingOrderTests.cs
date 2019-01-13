@@ -83,5 +83,32 @@ namespace CourierKata.Test
                 Assert.Equal(expectedCost, underTest.SpeedyShippingCost);
             }
         }
+
+        public class KataThree
+        {
+            readonly Dictionary<int, ShippingCharge> PriceDictionary = new Dictionary<int, ShippingCharge>
+            {
+                {0, new ShippingCharge(3, 1, 2)},
+                {1, new ShippingCharge(8, 3, 2)},
+                {2, new ShippingCharge(15, 6, 2)},
+                {3, new ShippingCharge(25, 10, 2)}
+            };
+
+            [Fact]
+            public void It_Should_Charge_An_Extra_2kg_For_A_Package_When_It_Is_Overweight()
+            {
+
+                var parcels = new List<Parcel>
+                {
+                    new Parcel(5, 9, 2),
+                    new Parcel(11, 49, 4),
+                    new Parcel(5, 51, 7),
+                    new Parcel(101, 9, 11),
+
+                };
+
+
+            }
+        }
     }
 }

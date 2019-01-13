@@ -20,7 +20,7 @@ namespace CourierKata
             foreach (var parcel in parcels)
             {
                 parcel.SetShippingCost(shippingChargeByType);
-                ParcelCost += parcel.ShippingCost;
+                ParcelCost += parcel.TotalCost;
             }
 
             if (speedy)

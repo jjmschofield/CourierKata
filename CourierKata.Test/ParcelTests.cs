@@ -44,7 +44,7 @@ namespace CourierKata.Test
         public class SetShippingCost
         {
             [Fact]
-            public void Should_Correctly_Calculate_The_Price_Of_Medium_Parcels_By_Type_Code()
+            public void Should_Calculate_The_Price_Of_Parcels_By_Type_Code_When_Given_A_Valid_Price_Dictionary()
             {
                 var expectedCost = 25.00;
               
@@ -54,7 +54,28 @@ namespace CourierKata.Test
 
                 underTest.SetShippingCost(priceDictionary);
 
-                Assert.Equal(expectedCost, underTest.ShippingCost);
+                Assert.Equal(expectedCost, underTest.ShippingCharge);
+            }
+
+            [Fact]
+            public void Should_Calculate_An_Extra_Charge_For_Each_Kg_Over_The_Weight_Limit()
+            {
+                var cost = 25.00;
+                
+                var weightLimit = 1;
+                var actualWeight = 3;
+                var overWeightByKg = 2;
+
+                var underTest = new Parcel(5, 9, actualWeight);
+
+                var priceDictionary = new Dictionary<int, ShippingCharge> { { underTest.Type.Code, new ShippingCharge(cost, weightLimit, overWeightByKg) } };
+
+                underTest.SetShippingCost(priceDictionary);
+
+                var expectedOverweightCharge = (actualWeight - weightLimit) * overWeightByKg;
+
+                Assert.Equal(expectedOverweightCharge, underTest.OverweightCharge);
+                Assert.Equal(underTest.TotalCost, underTest.ShippingCharge + underTest.OverweightCharge);
             }
 
             [Fact]
