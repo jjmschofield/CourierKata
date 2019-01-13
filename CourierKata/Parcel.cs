@@ -20,6 +20,7 @@ namespace CourierKata
             WeightKg = weightKg;
         }
 
+        public void SetShippingCost(Dictionary<int, ShippingRate> shippingRatesByCode)
         {
             if (!shippingRatesByCode.ContainsKey(Type.Code))
             {
@@ -31,6 +32,7 @@ namespace CourierKata
             TotalCost = ShippingCharge + OverweightCharge;
         }
 
+        private double CalculateOverweightCharge(ShippingRate shippingRate)
         {
             if (WeightKg > shippingRate.WeightLimitKg)
             {
