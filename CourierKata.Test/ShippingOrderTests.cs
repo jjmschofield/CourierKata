@@ -7,12 +7,12 @@ namespace CourierKata.Test
     {
         public class KataOne
         {
-            readonly Dictionary<int, ShippingCharge> PriceDictionary = new Dictionary<int, ShippingCharge>
+            readonly Dictionary<int, ShippingRate> PriceDictionary = new Dictionary<int, ShippingRate>
             {
-                {0, new ShippingCharge(3, 1, 2)},
-                {1, new ShippingCharge(8, 3, 2)},
-                {2, new ShippingCharge(15, 6, 2)},
-                {3, new ShippingCharge(25, 10, 2)}
+                {0, new ShippingRate(3, 1, 2)},
+                {1, new ShippingRate(8, 3, 2)},
+                {2, new ShippingRate(15, 6, 2)},
+                {3, new ShippingRate(25, 10, 2)}
             };
 
             [Fact]
@@ -37,12 +37,12 @@ namespace CourierKata.Test
 
         public class KataTwo
         {
-            readonly Dictionary<int, ShippingCharge> PriceDictionary = new Dictionary<int, ShippingCharge>
+            readonly Dictionary<int, ShippingRate> PriceDictionary = new Dictionary<int, ShippingRate>
             {
-                {0, new ShippingCharge(3, 1, 2)},
-                {1, new ShippingCharge(8, 3, 2)},
-                {2, new ShippingCharge(15, 6, 2)},
-                {3, new ShippingCharge(25, 10, 2)}
+                {0, new ShippingRate(3, 1, 2)},
+                {1, new ShippingRate(8, 3, 2)},
+                {2, new ShippingRate(15, 6, 2)},
+                {3, new ShippingRate(25, 10, 2)}
             };
 
             [Fact]
@@ -86,12 +86,12 @@ namespace CourierKata.Test
 
         public class KataThree
         {
-            readonly Dictionary<int, ShippingCharge> PriceDictionary = new Dictionary<int, ShippingCharge>
+            readonly Dictionary<int, ShippingRate> PriceDictionary = new Dictionary<int, ShippingRate>
             {
-                {0, new ShippingCharge(3, 1, 2)},
-                {1, new ShippingCharge(8, 3, 2)},
-                {2, new ShippingCharge(15, 6, 2)},
-                {3, new ShippingCharge(25, 10, 2)}
+                {0, new ShippingRate(3, 1, 2)},
+                {1, new ShippingRate(8, 3, 2)},
+                {2, new ShippingRate(15, 6, 2)},
+                {3, new ShippingRate(25, 10, 2)}
             };
 
             [Fact]
@@ -116,13 +116,13 @@ namespace CourierKata.Test
 
         public class KataFour
         {
-            readonly Dictionary<int, ShippingCharge> PriceDictionary = new Dictionary<int, ShippingCharge>
+            readonly Dictionary<int, ShippingRate> PriceDictionary = new Dictionary<int, ShippingRate>
             {
-                {0, new ShippingCharge(3, 1, 2)},
-                {1, new ShippingCharge(8, 3, 2)},
-                {2, new ShippingCharge(15, 6, 2)},
-                {3, new ShippingCharge(25, 10, 2)},
-                {4, new ShippingCharge(50, 50, 1)}
+                {0, new ShippingRate(3, 1, 2)},
+                {1, new ShippingRate(8, 3, 2)},
+                {2, new ShippingRate(15, 6, 2)},
+                {3, new ShippingRate(25, 10, 2)},
+                {4, new ShippingRate(50, 50, 1)}
             };
 
             [Fact]

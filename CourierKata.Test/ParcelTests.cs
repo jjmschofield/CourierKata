@@ -50,9 +50,9 @@ namespace CourierKata.Test
               
                 var underTest = new Parcel(5, 9);
 
-                var priceDictionary = new Dictionary<int, ShippingCharge> { { underTest.Type.Code, new ShippingCharge(expectedCost, 0, 0) } };
+                var shippingRates = new Dictionary<int, ShippingRate> { { underTest.Type.Code, new ShippingRate(expectedCost, 0, 0) } };
 
-                underTest.SetShippingCost(priceDictionary);
+                underTest.SetShippingCost(shippingRates);
 
                 Assert.Equal(expectedCost, underTest.ShippingCharge);
             }
@@ -68,9 +68,9 @@ namespace CourierKata.Test
 
                 var underTest = new Parcel(5, 9, actualWeight);
 
-                var priceDictionary = new Dictionary<int, ShippingCharge> { { underTest.Type.Code, new ShippingCharge(cost, weightLimit, overWeightByKg) } };
+                var shippingRates = new Dictionary<int, ShippingRate> { { underTest.Type.Code, new ShippingRate(cost, weightLimit, overWeightByKg) } };
 
-                underTest.SetShippingCost(priceDictionary);
+                underTest.SetShippingCost(shippingRates);
 
                 var expectedOverweightCharge = (actualWeight - weightLimit) * overWeightByKg;
 
@@ -83,9 +83,9 @@ namespace CourierKata.Test
             {
                 var underTest = new Parcel(5, 9);
 
-                var priceDictionary = new Dictionary<int, ShippingCharge>();
+                var shippingRates = new Dictionary<int, ShippingRate>();
 
-                Assert.Throws<Exception>(() => underTest.SetShippingCost(priceDictionary));
+                Assert.Throws<Exception>(() => underTest.SetShippingCost(shippingRates));
             }
         }
     }

@@ -13,13 +13,13 @@ namespace CourierKata
         
         public string CurrencyCode { get; } = "USD";
 
-        public ShippingOrder(List<Parcel> parcels, Dictionary<int,ShippingCharge> shippingChargeByType, bool speedy = false)
+        public ShippingOrder(List<Parcel> parcels, Dictionary<int,ShippingRate> shippingRatesByCode, bool speedy = false)
         {
             Parcels = parcels;
 
             foreach (var parcel in parcels)
             {
-                parcel.SetShippingCost(shippingChargeByType);
+                parcel.SetShippingCost(shippingRatesByCode);
                 ParcelCost += parcel.TotalCost;
             }
 

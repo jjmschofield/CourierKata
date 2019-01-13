@@ -18,19 +18,19 @@ namespace CourierKata
                 return;
             }
 
-            var largestDimension = dimensions.GetLargestDimension();
+            var largestDimensionCm = dimensions.GetLargestDimension();
 
-            if (largestDimension < 10)
+            if (largestDimensionCm < 10)
             {
                 Name = "Small";
                 Code = 0;
             }
-            else if (largestDimension < 50)
+            else if (largestDimensionCm < 50)
             {
                 Name = "Medium";
                 Code = 1;
             }
-            else if (largestDimension < 100)
+            else if (largestDimensionCm < 100)
             {
                 Name = "Large";
                 Code = 2;

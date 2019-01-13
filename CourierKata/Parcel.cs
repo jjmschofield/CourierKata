@@ -20,23 +20,21 @@ namespace CourierKata
             WeightKg = weightKg;
         }
 
-        public void SetShippingCost(Dictionary<int, ShippingCharge> shippingChargeByType)
         {
-            if (!shippingChargeByType.ContainsKey(Type.Code))
+            if (!shippingRatesByCode.ContainsKey(Type.Code))
             {
                 throw new Exception("Type " + Type.Code + " is not available in the supplied price dictionary");
             }
 
-            ShippingCharge = shippingChargeByType[Type.Code].Charge;
-            OverweightCharge = CalculateOverweightCharge(shippingChargeByType[Type.Code]);
+            ShippingCharge = shippingRatesByCode[Type.Code].Charge;
+            OverweightCharge = CalculateOverweightCharge(shippingRatesByCode[Type.Code]);
             TotalCost = ShippingCharge + OverweightCharge;
         }
 
-        private double CalculateOverweightCharge(ShippingCharge shippingCharge)
         {
-            if (WeightKg > shippingCharge.WeightLimitKg)
+            if (WeightKg > shippingRate.WeightLimitKg)
             {
-                return (WeightKg - shippingCharge.WeightLimitKg) * shippingCharge.OverweightChargePerKg;
+                return (WeightKg - shippingRate.WeightLimitKg) * shippingRate.OverweightChargePerKg;
             }
             
             return 0;
