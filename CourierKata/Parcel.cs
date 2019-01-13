@@ -8,10 +8,10 @@ namespace CourierKata
     {
         public ParcelDimensions Dimensions { get; }
         public ParcelClassification Type { get; }
-        public int WeightKg { get; }
+        public double WeightKg { get; }
         public double ShippingCost { get; private set; }
 
-        public Parcel(int widthCm, int heightCm, int weightKg = 0)
+        public Parcel(double widthCm, double heightCm, double weightKg = 0)
         {
             Dimensions = new ParcelDimensions(widthCm, heightCm);
             Type = new ParcelClassification(Dimensions);

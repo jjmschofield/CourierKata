@@ -6,16 +6,16 @@ namespace CourierKata
 {
     public class ParcelDimensions
     {
-        public int WidthCm;
-        public int HeightCm;
+        public double WidthCm;
+        public double HeightCm;
 
-        public ParcelDimensions(int widthCm, int heightCm)
+        public ParcelDimensions(double widthCm, double heightCm)
         {
             WidthCm = widthCm;
             HeightCm = heightCm;
         }
 
-        public int GetLargestDimension()
+        public double GetLargestDimension()
         {
             return WidthCm > HeightCm ? WidthCm : HeightCm;
         }
