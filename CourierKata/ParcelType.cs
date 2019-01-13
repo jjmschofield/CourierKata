@@ -4,12 +4,12 @@ using System.Text;
 
 namespace CourierKata
 {
-    public class ParcelClassification
+    public class ParcelType
     {
         public string Name { get; }
         public ParcelCode Code { get; }
 
-    public ParcelClassification(ParcelDimensions dimensions, double weightKg)
+    public ParcelType(ParcelDimensions dimensions, double weightKg)
         {
             if (weightKg >= 50)
             {
