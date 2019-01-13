@@ -50,7 +50,7 @@ namespace CourierKata.Test
               
                 var underTest = new Parcel(5, 9);
 
-                var priceDictionary = new Dictionary<int, double> { { underTest.Type.Code, expectedCost } };
+                var priceDictionary = new Dictionary<int, ShippingCharge> { { underTest.Type.Code, new ShippingCharge(expectedCost, 0, 0) } };
 
                 underTest.SetShippingCost(priceDictionary);
 
@@ -62,7 +62,7 @@ namespace CourierKata.Test
             {
                 var underTest = new Parcel(5, 9);
 
-                var priceDictionary = new Dictionary<int, double>();
+                var priceDictionary = new Dictionary<int, ShippingCharge>();
 
                 Assert.Throws<Exception>(() => underTest.SetShippingCost(priceDictionary));
             }

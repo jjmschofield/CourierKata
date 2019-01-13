@@ -7,12 +7,12 @@ namespace CourierKata.Test
     {
         public class KataOne
         {
-            readonly Dictionary<int, double> PriceDictionary = new Dictionary<int, double>
+            readonly Dictionary<int, ShippingCharge> PriceDictionary = new Dictionary<int, ShippingCharge>
             {
-                {0, 3},
-                {1, 8},
-                {2, 15},
-                {3, 25}
+                {0, new ShippingCharge(3, 1, 2)},
+                {1, new ShippingCharge(8, 3, 2)},
+                {2, new ShippingCharge(15, 6, 2)},
+                {3, new ShippingCharge(25, 10, 2)}
             };
 
             [Fact]
@@ -22,10 +22,10 @@ namespace CourierKata.Test
 
                 var parcels = new List<Parcel>
                 {
-                    new Parcel(5, 9, 1),
-                    new Parcel(11, 49, 1),
-                    new Parcel(5, 51, 1),
-                    new Parcel(101, 9, 1),
+                    new Parcel(5, 9),
+                    new Parcel(11, 49),
+                    new Parcel(5, 51),
+                    new Parcel(101, 9),
 
                 };
 
@@ -37,12 +37,12 @@ namespace CourierKata.Test
 
         public class KataTwo
         {
-            readonly Dictionary<int, double> PriceDictionary = new Dictionary<int, double>
+            readonly Dictionary<int, ShippingCharge> PriceDictionary = new Dictionary<int, ShippingCharge>
             {
-                {0, 3},
-                {1, 8},
-                {2, 15},
-                {3, 25}
+                {0, new ShippingCharge(3, 1, 2)},
+                {1, new ShippingCharge(8, 3, 2)},
+                {2, new ShippingCharge(15, 6, 2)},
+                {3, new ShippingCharge(25, 10, 2)}
             };
 
             [Fact]

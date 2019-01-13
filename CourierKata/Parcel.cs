@@ -18,14 +18,14 @@ namespace CourierKata
             WeightKg = weightKg;
         }
 
-        public void SetShippingCost(Dictionary<int, double> priceByParcelType)
+        public void SetShippingCost(Dictionary<int, ShippingCharge> shippingChargeByType)
         {
-            if (!priceByParcelType.ContainsKey(Type.Code))
+            if (!shippingChargeByType.ContainsKey(Type.Code))
             {
                 throw new Exception("Type " + Type.Code + " is not available in the supplied price dictionary");
             }
 
-            ShippingCost = priceByParcelType[Type.Code];
+            ShippingCost = shippingChargeByType[Type.Code].Charge;
         }
     }
 }
