@@ -7,7 +7,7 @@ namespace CourierKata
     public class Parcel
     {
         public ParcelDimensions Dimensions { get; }
-        public ParcelClassification Type { get; }
+        public ParcelType Type { get; }
         public double WeightKg { get; }
         public double ShippingCharge { get; private set; }
         public double OverweightCharge { get; private set; }
@@ -16,7 +16,7 @@ namespace CourierKata
         public Parcel(double widthCm, double heightCm, double weightKg = 0)
         {
             Dimensions = new ParcelDimensions(widthCm, heightCm);
-            Type = new ParcelClassification(Dimensions, weightKg);
+            Type = new ParcelType(Dimensions, weightKg);
             WeightKg = weightKg;
         }
 

@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using Xunit;
+using Xunit.Sdk;
 
 namespace CourierKata.Test
 {
     public class ShippingOrderTests
     {
-        static readonly Dictionary<ParcelCode, ShippingRate> PriceDictionary = new Dictionary<ParcelCode, ShippingRate>
+        static readonly Dictionary<ParcelCode, ShippingRate> shippingRatesByCode = new Dictionary<ParcelCode, ShippingRate>
         {
             {ParcelCode.Small, new ShippingRate(3, 1, 2)},
             {ParcelCode.Medium, new ShippingRate(8, 3, 2)},
@@ -30,7 +31,7 @@ namespace CourierKata.Test
 
                 };
 
-                var underTest = new ShippingOrder(parcels, PriceDictionary);
+                var underTest = new ShippingOrder(parcels, shippingRatesByCode);
 
                 Assert.Equal(expectedCost, underTest.TotalPrice);
             }
@@ -52,7 +53,7 @@ namespace CourierKata.Test
 
                 };
 
-                var underTest = new ShippingOrder(parcels, PriceDictionary, true);
+                var underTest = new ShippingOrder(parcels, shippingRatesByCode, true);
 
                 Assert.Equal(expectedCost, underTest.TotalPrice);
             }
@@ -71,7 +72,7 @@ namespace CourierKata.Test
 
                 };
 
-                var underTest = new ShippingOrder(parcels, PriceDictionary, true);
+                var underTest = new ShippingOrder(parcels, shippingRatesByCode, true);
 
                 Assert.Equal(expectedCost, underTest.SpeedyShippingPrice);
             }
@@ -93,7 +94,7 @@ namespace CourierKata.Test
 
                 };
 
-                var underTest = new ShippingOrder(parcels, PriceDictionary);
+                var underTest = new ShippingOrder(parcels, shippingRatesByCode);
 
                 Assert.Equal(expectedCost, underTest.TotalPrice);
             }
@@ -101,8 +102,6 @@ namespace CourierKata.Test
 
         public class KataFour
         {
-            
-
             [Fact]
             public void It_Should_Only_Charge_1kg_Per_Kg_Overweight_For_Heavy_Parcels()
             {
@@ -113,9 +112,88 @@ namespace CourierKata.Test
                     new Parcel(5, 9, 51)
                 };
 
-                var underTest = new ShippingOrder(parcels, PriceDictionary);
+                var underTest = new ShippingOrder(parcels, shippingRatesByCode);
 
                 Assert.Equal(expectedCost, underTest.TotalPrice);
+            }
+        }
+
+        public class KataFive
+        {
+            [Fact]
+            public void It_Should_Discount_Cheapest_Small_Parcel_When_At_Lest_Four_Small_Parcels()
+            {
+                var expectedDiscountParcel = new Parcel(5, 9, 1);
+
+                var parcels = new List<Parcel>
+                {
+                    new Parcel(5, 9, 10),
+                    new Parcel(5, 9, 30),
+                    expectedDiscountParcel,
+                    new Parcel(5, 9, 10),
+                    new Parcel(5, 9, 31),
+                };
+
+                var underTest = new ShippingOrder(parcels, shippingRatesByCode);
+
+                Assert.Equal(expectedDiscountParcel.TotalPrice, underTest.TotalDiscounts);
+                Assert.Contains(parcels[0], underTest.Discounts[0].Parcels);
+                Assert.Contains(parcels[1], underTest.Discounts[0].Parcels);
+                Assert.Contains(parcels[2], underTest.Discounts[0].Parcels);
+                Assert.Contains(parcels[3], underTest.Discounts[0].Parcels);
+                Assert.DoesNotContain(parcels[4], underTest.Discounts[0].Parcels);
+            }
+
+
+            [Fact]
+            public void It_Should_Discount_Cheapest_Medium_Parcel_When_At_Lest_Three_Medium_Parcels()
+            {
+                var expectedDiscountParcel = new Parcel(30, 30, 1);
+
+                var parcels = new List<Parcel>
+                {
+                    new Parcel(30, 30, 10),
+                    new Parcel(30, 30, 30),
+                    expectedDiscountParcel,
+                    new Parcel(30, 30, 10),
+                };
+
+                var underTest = new ShippingOrder(parcels, shippingRatesByCode);
+
+                Assert.Equal(expectedDiscountParcel.TotalPrice, underTest.TotalDiscounts);
+                Assert.Contains(parcels[0], underTest.Discounts[0].Parcels);
+                Assert.Contains(parcels[2], underTest.Discounts[0].Parcels);
+                Assert.Contains(parcels[3], underTest.Discounts[0].Parcels);
+                Assert.DoesNotContain(parcels[1], underTest.Discounts[0].Parcels);
+            }
+
+            [Fact]
+            public void It_Should_Apply_Multiple_Discounts_Wiht_Parcels_Used_Only_Once_Per_Discount()
+            {
+                var discountedParcelOne = new Parcel(30, 30, 1);
+                var discountedParcelTwo = new Parcel(30, 30, 4);
+
+                var parcels = new List<Parcel>
+                {
+                    discountedParcelOne,
+                    discountedParcelTwo,
+                    new Parcel(30, 30, 5),
+                    new Parcel(30, 30, 6),
+                    new Parcel(30, 30),
+                    new Parcel(30, 30),
+                };
+
+                var underTest = new ShippingOrder(parcels, shippingRatesByCode);
+
+                var expectedTotalDiscount = discountedParcelOne.TotalPrice + discountedParcelTwo.TotalPrice;
+
+                Assert.Equal(expectedTotalDiscount, underTest.TotalDiscounts);
+                Assert.Contains(parcels[0], underTest.Discounts[0].Parcels);
+                Assert.Contains(parcels[4], underTest.Discounts[0].Parcels);
+                Assert.Contains(parcels[5], underTest.Discounts[0].Parcels);
+                Assert.Contains(parcels[1], underTest.Discounts[1].Parcels);
+                Assert.Contains(parcels[2], underTest.Discounts[1].Parcels);
+                Assert.Contains(parcels[3], underTest.Discounts[1].Parcels);
             }
         }
     }
