@@ -52,7 +52,7 @@ namespace CourierKata.Test
 
                 var shippingRates = new Dictionary<int, ShippingRate> { { underTest.Type.Code, new ShippingRate(expectedCost, 0, 0) } };
 
-                underTest.SetShippingCost(shippingRates);
+                underTest.SetShippingPrice(shippingRates);
 
                 Assert.Equal(expectedCost, underTest.ShippingCharge);
             }
@@ -70,12 +70,12 @@ namespace CourierKata.Test
 
                 var shippingRates = new Dictionary<int, ShippingRate> { { underTest.Type.Code, new ShippingRate(cost, weightLimit, overWeightByKg) } };
 
-                underTest.SetShippingCost(shippingRates);
+                underTest.SetShippingPrice(shippingRates);
 
                 var expectedOverweightCharge = (actualWeight - weightLimit) * overWeightByKg;
 
                 Assert.Equal(expectedOverweightCharge, underTest.OverweightCharge);
-                Assert.Equal(underTest.TotalCost, underTest.ShippingCharge + underTest.OverweightCharge);
+                Assert.Equal(underTest.TotalPrice, underTest.ShippingCharge + underTest.OverweightCharge);
             }
 
             [Fact]
@@ -85,7 +85,7 @@ namespace CourierKata.Test
 
                 var shippingRates = new Dictionary<int, ShippingRate>();
 
-                Assert.Throws<Exception>(() => underTest.SetShippingCost(shippingRates));
+                Assert.Throws<Exception>(() => underTest.SetShippingPrice(shippingRates));
             }
         }
     }

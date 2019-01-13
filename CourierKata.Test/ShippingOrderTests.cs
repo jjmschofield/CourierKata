@@ -32,7 +32,7 @@ namespace CourierKata.Test
 
                 var underTest = new ShippingOrder(parcels, PriceDictionary);
 
-                Assert.Equal(expectedCost, underTest.TotalCost);
+                Assert.Equal(expectedCost, underTest.TotalPrice);
             }
         }
 
@@ -54,7 +54,7 @@ namespace CourierKata.Test
 
                 var underTest = new ShippingOrder(parcels, PriceDictionary, true);
 
-                Assert.Equal(expectedCost, underTest.TotalCost);
+                Assert.Equal(expectedCost, underTest.TotalPrice);
             }
 
             [Fact]
@@ -73,7 +73,7 @@ namespace CourierKata.Test
 
                 var underTest = new ShippingOrder(parcels, PriceDictionary, true);
 
-                Assert.Equal(expectedCost, underTest.SpeedyShippingCost);
+                Assert.Equal(expectedCost, underTest.SpeedyShippingPrice);
             }
         }
 
@@ -95,7 +95,7 @@ namespace CourierKata.Test
 
                 var underTest = new ShippingOrder(parcels, PriceDictionary);
 
-                Assert.Equal(expectedCost, underTest.TotalCost);
+                Assert.Equal(expectedCost, underTest.TotalPrice);
             }
         }
 
@@ -115,7 +115,7 @@ namespace CourierKata.Test
 
                 var underTest = new ShippingOrder(parcels, PriceDictionary);
 
-                Assert.Equal(expectedCost, underTest.TotalCost);
+                Assert.Equal(expectedCost, underTest.TotalPrice);
             }
         }
     }

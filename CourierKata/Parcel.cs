@@ -11,7 +11,7 @@ namespace CourierKata
         public double WeightKg { get; }
         public double ShippingCharge { get; private set; }
         public double OverweightCharge { get; private set; }
-        public double TotalCost { get; private set; }
+        public double TotalPrice { get; private set; }
 
         public Parcel(double widthCm, double heightCm, double weightKg = 0)
         {
@@ -20,7 +20,7 @@ namespace CourierKata
             WeightKg = weightKg;
         }
 
-        public void SetShippingCost(Dictionary<int, ShippingRate> shippingRatesByCode)
+        public void SetShippingPrice(Dictionary<int, ShippingRate> shippingRatesByCode)
         {
             if (!shippingRatesByCode.ContainsKey(Type.Code))
             {
@@ -29,7 +29,7 @@ namespace CourierKata
 
             ShippingCharge = shippingRatesByCode[Type.Code].Charge;
             OverweightCharge = CalculateOverweightCharge(shippingRatesByCode[Type.Code]);
-            TotalCost = ShippingCharge + OverweightCharge;
+            TotalPrice = ShippingCharge + OverweightCharge;
         }
 
         private double CalculateOverweightCharge(ShippingRate shippingRate)

@@ -7,9 +7,9 @@ namespace CourierKata
     public class ShippingOrder
     {
         public List<Parcel> Parcels { get; }
-        public double ParcelCost { get; } = 0;
-        public double SpeedyShippingCost { get; } = 0;
-        public double TotalCost { get; } = 0;
+        public double ParcelPrice { get; } = 0;
+        public double SpeedyShippingPrice { get; } = 0;
+        public double TotalPrice { get; } = 0;
         
         public string CurrencyCode { get; } = "USD";
 
@@ -19,16 +19,16 @@ namespace CourierKata
 
             foreach (var parcel in parcels)
             {
-                parcel.SetShippingCost(shippingRatesByCode);
-                ParcelCost += parcel.TotalCost;
+                parcel.SetShippingPrice(shippingRatesByCode);
+                ParcelPrice += parcel.TotalPrice;
             }
 
             if (speedy)
             {
-                SpeedyShippingCost = ParcelCost;
+                SpeedyShippingPrice = ParcelPrice;
             }
 
-            TotalCost = ParcelCost + SpeedyShippingCost;
+            TotalPrice = ParcelPrice + SpeedyShippingPrice;
         }
     }
 }
