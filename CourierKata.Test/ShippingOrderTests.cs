@@ -5,16 +5,17 @@ namespace CourierKata.Test
 {
     public class ShippingOrderTests
     {
+        static readonly Dictionary<int, ShippingRate> PriceDictionary = new Dictionary<int, ShippingRate>
+        {
+            {0, new ShippingRate(3, 1, 2)}, // Small
+            {1, new ShippingRate(8, 3, 2)}, // Medium
+            {2, new ShippingRate(15, 6, 2)}, // Large
+            {3, new ShippingRate(25, 10, 2)}, // XL
+            {4, new ShippingRate(50, 50, 1)} // Heavy
+        };
+
         public class KataOne
         {
-            readonly Dictionary<int, ShippingRate> PriceDictionary = new Dictionary<int, ShippingRate>
-            {
-                {0, new ShippingRate(3, 1, 2)},
-                {1, new ShippingRate(8, 3, 2)},
-                {2, new ShippingRate(15, 6, 2)},
-                {3, new ShippingRate(25, 10, 2)}
-            };
-
             [Fact]
             public void Should_Correctly_Total_The_Price_Of_An_Order()
             {
@@ -37,14 +38,6 @@ namespace CourierKata.Test
 
         public class KataTwo
         {
-            readonly Dictionary<int, ShippingRate> PriceDictionary = new Dictionary<int, ShippingRate>
-            {
-                {0, new ShippingRate(3, 1, 2)},
-                {1, new ShippingRate(8, 3, 2)},
-                {2, new ShippingRate(15, 6, 2)},
-                {3, new ShippingRate(25, 10, 2)}
-            };
-
             [Fact]
             public void Should_Double_The_Price_Of_An_Order_When_Speedy_Shipping()
             {
@@ -86,14 +79,6 @@ namespace CourierKata.Test
 
         public class KataThree
         {
-            readonly Dictionary<int, ShippingRate> PriceDictionary = new Dictionary<int, ShippingRate>
-            {
-                {0, new ShippingRate(3, 1, 2)},
-                {1, new ShippingRate(8, 3, 2)},
-                {2, new ShippingRate(15, 6, 2)},
-                {3, new ShippingRate(25, 10, 2)}
-            };
-
             [Fact]
             public void It_Should_Charge_An_Extra_2kg_For_A_Package_When_It_Is_Overweight()
             {
@@ -116,14 +101,7 @@ namespace CourierKata.Test
 
         public class KataFour
         {
-            readonly Dictionary<int, ShippingRate> PriceDictionary = new Dictionary<int, ShippingRate>
-            {
-                {0, new ShippingRate(3, 1, 2)},
-                {1, new ShippingRate(8, 3, 2)},
-                {2, new ShippingRate(15, 6, 2)},
-                {3, new ShippingRate(25, 10, 2)},
-                {4, new ShippingRate(50, 50, 1)}
-            };
+            
 
             [Fact]
             public void It_Should_Only_Charge_1kg_Per_Kg_Overweight_For_Heavy_Parcels()
