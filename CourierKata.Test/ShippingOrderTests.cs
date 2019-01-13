@@ -97,6 +97,7 @@ namespace CourierKata.Test
             [Fact]
             public void It_Should_Charge_An_Extra_2kg_For_A_Package_When_It_Is_Overweight()
             {
+                var expectedCost = 59.00;
 
                 var parcels = new List<Parcel>
                 {
@@ -107,7 +108,9 @@ namespace CourierKata.Test
 
                 };
 
+                var underTest = new ShippingOrder(parcels, PriceDictionary);
 
+                Assert.Equal(expectedCost, underTest.TotalCost);
             }
         }
     }
