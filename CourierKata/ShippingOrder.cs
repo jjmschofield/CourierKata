@@ -23,18 +23,20 @@ namespace CourierKata
             foreach (var parcel in parcels)
             {
                 parcel.SetShippingPrice(shippingRatesByCode);
-                ParcelPrice += parcel.TotalPrice;
-            }
-
-            if (speedy)
-            {
-                SpeedyShippingPrice = ParcelPrice;
+                TotalPrice += parcel.TotalPrice;
             }
 
             Discounts = CalculateDiscounts();
+
             TotalDiscounts = Discounts.Sum(discount => discount.Value);
 
-            TotalPrice = ParcelPrice + SpeedyShippingPrice - TotalDiscounts;
+            TotalPrice -= TotalDiscounts;
+
+            if (speedy)
+            {
+                SpeedyShippingPrice = TotalPrice;
+                TotalPrice += SpeedyShippingPrice;
+            }
         }
 
         public List<ParcelDiscounts> CalculateDiscounts()

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 using Xunit.Sdk;
 
@@ -136,12 +137,16 @@ namespace CourierKata.Test
 
                 var underTest = new ShippingOrder(parcels, shippingRatesByCode);
 
+
                 Assert.Equal(expectedDiscountParcel.TotalPrice, underTest.TotalDiscounts);
                 Assert.Contains(parcels[0], underTest.Discounts[0].Parcels);
                 Assert.Contains(parcels[1], underTest.Discounts[0].Parcels);
                 Assert.Contains(parcels[2], underTest.Discounts[0].Parcels);
                 Assert.Contains(parcels[3], underTest.Discounts[0].Parcels);
                 Assert.DoesNotContain(parcels[4], underTest.Discounts[0].Parcels);
+
+                var expectedOrderTotal = parcels.Sum(parcel => parcel.TotalPrice) - expectedDiscountParcel.TotalPrice;
+                Assert.Equal(expectedOrderTotal, underTest.TotalPrice);
             }
 
 
@@ -194,6 +199,26 @@ namespace CourierKata.Test
                 Assert.Contains(parcels[1], underTest.Discounts[1].Parcels);
                 Assert.Contains(parcels[2], underTest.Discounts[1].Parcels);
                 Assert.Contains(parcels[3], underTest.Discounts[1].Parcels);
+            }
+
+            [Fact]
+            public void It_Should_Apply_The_Discount_Before_Speedy_Shipping_Is_Applied()
+            {
+                var expectedDiscountParcel = new Parcel(5, 9, 1);
+
+                var parcels = new List<Parcel>
+                {
+                    new Parcel(5, 9, 10),
+                    new Parcel(5, 9, 30),
+                    expectedDiscountParcel,
+                    new Parcel(5, 9, 10),
+                    new Parcel(5, 9, 31),
+                };
+
+                var underTest = new ShippingOrder(parcels, shippingRatesByCode, true);
+
+                var expectedOrderTotal = ( parcels.Sum(parcel => parcel.TotalPrice) * 2) - ( expectedDiscountParcel.TotalPrice * 2);
+                Assert.Equal(expectedOrderTotal, underTest.TotalPrice);
             }
         }
     }
