@@ -8,10 +8,9 @@ namespace CourierKata
     public class ShippingOrder
     {
         public List<Parcel> Parcels { get; }
-        public double ParcelPrice { get; } = 0;
-        public double SpeedyShippingPrice { get; } = 0;
         public List<ParcelDiscounts> Discounts { get; }
-        public double TotalDiscounts { get; } = 0;
+        public double SpeedyShippingPrice { get; } = 0;
+        public double TotalDiscount { get; } = 0;
         public double TotalPrice { get; } = 0;
         
         public string CurrencyCode { get; } = "USD";
@@ -28,9 +27,9 @@ namespace CourierKata
 
             Discounts = CalculateDiscounts();
 
-            TotalDiscounts = Discounts.Sum(discount => discount.Value);
+            TotalDiscount = Discounts.Sum(discount => discount.Value);
 
-            TotalPrice -= TotalDiscounts;
+            TotalPrice -= TotalDiscount;
 
             if (speedy)
             {

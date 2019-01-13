@@ -138,7 +138,7 @@ namespace CourierKata.Test
                 var underTest = new ShippingOrder(parcels, shippingRatesByCode);
 
 
-                Assert.Equal(expectedDiscountParcel.TotalPrice, underTest.TotalDiscounts);
+                Assert.Equal(expectedDiscountParcel.TotalPrice, underTest.TotalDiscount);
                 Assert.Contains(parcels[0], underTest.Discounts[0].Parcels);
                 Assert.Contains(parcels[1], underTest.Discounts[0].Parcels);
                 Assert.Contains(parcels[2], underTest.Discounts[0].Parcels);
@@ -165,7 +165,7 @@ namespace CourierKata.Test
 
                 var underTest = new ShippingOrder(parcels, shippingRatesByCode);
 
-                Assert.Equal(expectedDiscountParcel.TotalPrice, underTest.TotalDiscounts);
+                Assert.Equal(expectedDiscountParcel.TotalPrice, underTest.TotalDiscount);
                 Assert.Contains(parcels[0], underTest.Discounts[0].Parcels);
                 Assert.Contains(parcels[2], underTest.Discounts[0].Parcels);
                 Assert.Contains(parcels[3], underTest.Discounts[0].Parcels);
@@ -192,7 +192,7 @@ namespace CourierKata.Test
 
                 var expectedTotalDiscount = discountedParcelOne.TotalPrice + discountedParcelTwo.TotalPrice;
 
-                Assert.Equal(expectedTotalDiscount, underTest.TotalDiscounts);
+                Assert.Equal(expectedTotalDiscount, underTest.TotalDiscount);
                 Assert.Contains(parcels[0], underTest.Discounts[0].Parcels);
                 Assert.Contains(parcels[4], underTest.Discounts[0].Parcels);
                 Assert.Contains(parcels[5], underTest.Discounts[0].Parcels);
