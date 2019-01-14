@@ -66,7 +66,7 @@ The solution offers up two projects:
 * CourierKata.Test - xUnit tests for the library
 
 ### TL;DR Example of Calculating an Order
-```
+```cs
 var shippingRatesByCode = new Dictionary<ParcelCode, ShippingRate>
     {
         {ParcelCode.Small, new ShippingRate(3, 1, 2)},
@@ -90,7 +90,7 @@ var order = new ShippingOrder(parcels, shippingRatesByCode);
 ### ShippingOrder
 The main entrypoint into the solution is the `ShippingOrder` class. To calculate the price of an order of an order you simply need to provide the list of parcels and shipping rate dictionary keyed by by parcel type on the constructor.
 
-```
+```cs
 var order = new ShippingOrder(parcels, shippingRatesByParcelCode);
 ```
 
@@ -100,14 +100,14 @@ This interface allows you to retrieve a list of parcels and shipping codes elsew
 
 Speedy shipping can be enabled by passing true as the final parameter on the constructor:
 
-```
+```cs
 var speedyOrder = new ShippingOrder(parcels, shippingRatesByParcelCode, true);
 ```
 
 ### Parcels
 Parcels are constructed by specifying the width, height and weight on the constructor. The parcel will determine its type based on the specified values.
 
-```
+```cs
 var parcel = new Parcel(widthCm, heightCm, weightKg);
 ```
 
@@ -116,7 +116,7 @@ This class represents a shipping rate for a given parcel type.
 
 It is constructed with the base charge for the type, a weight limit and the charge per extra kg over the limit.
 
-```
+```cs
 var rate = ShippingRate(charge, weightLimitKg, overweightChargePerKg);
 ```
 
